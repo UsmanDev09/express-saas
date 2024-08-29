@@ -43,11 +43,4 @@ NotificationType.init(
     underscored: true,
   }
 );
-// NotificationType.associate = (models) => {
-//   NotificationType.hasMany(models.Notification, {
-//     foreignKey: 'notification_type_id',
-//     as: 'notifications',
-//   });
-// };
-
 module.exports = NotificationType;

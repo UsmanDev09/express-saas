@@ -1,7 +1,5 @@
-require("dotenv").config();
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const sequelize = new Sequelize(`postgres://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_DATABASE}`);
-const User = require('./userModel');
 class UserLeaderboards extends Model {}
 
 UserLeaderboards.init(
@@ -38,9 +36,4 @@ UserLeaderboards.init(
     timestamps: false,
   }
 );
-
-//   UserLeaderboards.belongsTo(User, {
-//     foreignKey: 'user_id',
-//   });
-
 module.exports = UserLeaderboards;

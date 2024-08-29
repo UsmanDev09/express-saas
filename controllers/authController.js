@@ -102,8 +102,6 @@ exports.getProfile = async (req, res) => {
 
 exports.getFirebaseToken = async (req, res) => {
   try {
-    // console.log("req user email",req.user.email);
-
     const token = await firebaseService.getCustomToken(req.user.email);
     res.json(token);
   } catch (error) {

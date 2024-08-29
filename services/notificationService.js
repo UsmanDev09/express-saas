@@ -1,3 +1,5 @@
+const { Op } = require('sequelize');
+const firebaseService = require('./firebaseService');
 const Notification = require('../models/notificationsModel');
 const UsersToFriends = require('../models/userFriendsModel');
 const NotificationType = require('../models/notificationTypeModel');
@@ -8,8 +10,6 @@ const User = require('../models/userModel');
 const NotificationTypeEnum = require('../enums/notification-type.enum');
 const FirebaseActionType = require('../enums/firebase-action.enum');
 const UserStatus = require('../enums/user-status');
-const firebaseService = require('./firebaseService');
-const { Op } = require('sequelize');
 const addNotification = async(req,res)=>{
     try {
         const notificationRequest = req.body;

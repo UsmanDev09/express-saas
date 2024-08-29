@@ -1,4 +1,3 @@
-const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 
 const generateValidationCode = (min = 1000, max = 9999) => {

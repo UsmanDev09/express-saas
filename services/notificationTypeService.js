@@ -1,6 +1,4 @@
 const NotificationType = require('../models/notificationTypeModel');
-// const UsersToFriends = require('../models/userFriendsModel');
-const { Op } = require('sequelize');
 const createNotificationType = async (req, res) => {
     try {
         const existsNotificationName = await NotificationType.findOne({

@@ -20,7 +20,6 @@ app.use("/auth",require('../routes/authRoute'));
 app.use("/profile",require('../routes/profileRoutes'));
 app.use("/notification",require('../routes/notificationRoute'));
 app.use("/notification-types",require('../routes/notificationTypeRoute'));
-app.use("/leaderboard",require('../routes/leaderboardRoute'));
 app.use("/payments",require('../routes/paymentsRoute'));
 const PORT = process.env.PORT || 5000;
 

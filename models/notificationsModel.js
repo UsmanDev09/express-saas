@@ -1,8 +1,5 @@
 const { DataTypes, Model,Sequelize } = require('sequelize');
 const sequelize = new Sequelize(`postgres://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_DATABASE}`);
-const Profile = require('./profilesModel');
-const notificationType=require('./notificationTypeModel');
-const NotificationGroup = require('./userNotificationGroupModel');
 
 class Notification extends Model {}
 
@@ -77,25 +74,4 @@ Notification.init({
   createdAt: 'created_at',
   updatedAt: 'updated_at',
 });
-
-// Associations
-
-// Notification.belongsTo(Profile, {
-//   foreignKey: 'user_id',
-//   as: 'user',
-// });
-
-// Notification.belongsTo(Profile, {
-//   foreignKey: 'from_user_id',
-//   as: 'fromUser',
-// });
-// Notification.belongsTo(notificationType, {
-//   foreignKey: 'notification_type_id',
-//   // as: 'notificationType',
-// });
-// Notification.belongsTo(NotificationGroup, {
-//   foreignKey: 'group_id',
-//   // as: 'NotificationGroup',
-// });
-
 module.exports = Notification;

@@ -1,59 +1,10 @@
 const nodemailer = require('nodemailer');
 const { stringify } = require('qs');
-require('dotenv').config();
 
 const EmailTemplate = {
   ForgotPassword: 'ForgotPassword',
   VerifyEmail: 'VerifyEmail',
 };
-
-// const getTemplateTitle = {
-//   [EmailTemplate.ForgotPassword]: 'Reset password',
-//   [EmailTemplate.VerifyEmail]: 'Email Confirmation',
-// };
-
-// class MailerService {
-//   constructor() {
-//     this.transporter = nodemailer.createTransport({
-//       host: process.env.MAILHOG_HOST,
-//       port: process.env.MAILHOG_PORT,
-//       secure:false,
-//     });
-//   }
-
-//   async send(recipient, templateId, params) {
-//     const mailOptions = {
-//       from: process.env.MAILER_EMAIL_FROM,
-//       to: Array.isArray(recipient) ? recipient.join(', ') : recipient,
-//       subject: getTemplateTitle[templateId],
-//       text: this.generateEmailContent(templateId, params),
-//     };
-
-//     await this.transporter.sendMail(mailOptions);
-//   }
-
-//   generateEmailContent(templateId, params) {
-//     switch (templateId) {
-//       case EmailTemplate.ForgotPassword:
-//         return `Hello ${params.name},\n\nPlease reset your password using the following link: ${params.resetLink}`;
-//       case EmailTemplate.VerifyEmail:
-//         return `Hello ${params.name},\n\nPlease verify your email using the following code: ${params.code}`;
-//       default:
-//         return '';
-//     }
-//   }
-
-//   async sendForgotPasswordEmail(recipient, token, name) {
-//     const resetLink = `${process.env.FRONTEND_HOST_URL}/reset-password?${stringify({ token })}`;
-//     await this.send(recipient, EmailTemplate.ForgotPassword, { name, resetLink });
-//   }
-
-//   async verifyMail(recipient, code, name) {
-//     await this.send(recipient, EmailTemplate.VerifyEmail, { name, code });
-//   }
-// }
-
-// module.exports = { MailerService, EmailTemplate };
 const config = {
   smtpHost: process.env.SMTP_HOST,
   smtpPort: process.env.SMTP_PORT,

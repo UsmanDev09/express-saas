@@ -1,11 +1,10 @@
+const { Op } = require('sequelize');
+const bcrypt = require('bcryptjs');
 const profile = require('../models/profilesModel');
 const userService = require('./userServices');
-const bcrypt = require('bcryptjs');
 const userProgress=require('../models/userProgressModel');
-const { Op } = require('sequelize');
 const User = require('../models/userModel');
 const { BadRequestException, NotFoundException } = require('../utils/errors');
-const { onboardingProfileSchema } = require('../models/onboardingProfileSchema');
 const { OnboardingRequest } = require('../utils/onboardingRequest');
 const { OnboardingResponse } = require('../utils/onboardingResponse');
 const { Sequelize } = require('sequelize');
@@ -127,7 +126,7 @@ const sendFriendRequest = async(friend_id,user_id)=>{
         });
     
         if (!exists) {
-          // Use a transaction to ensure both records are created atomically
+          
           await UsersToFriends.sequelize.transaction(async (t) => {
             await UsersToFriends.bulkCreate([
               { user_id, friend_id, initiator_id: user_id },
@@ -135,7 +134,6 @@ const sendFriendRequest = async(friend_id,user_id)=>{
             ], { transaction: t });
           });
     
-        //   // Send a notification
         notificationService.notification({
             notification_type_id: NotificationTypeEnum.FriendRequest,
             user_id: friend_id,
@@ -227,8 +225,6 @@ const acceptRequest = async (userId, friendId, notificationId) => {
           status: UserStatus.Active,
         },
       });
-      console.log("Frienships: ",friendships);
-      console.log("friend: ",friend);
       if (friendships.length > 0) {
         await UsersToFriends.sequelize.transaction(async (transaction) => {
           await Promise.all(

@@ -43,19 +43,4 @@ UsersToSkills.init(
   }
 );
 
-// Associations
-//   UsersToSkills.belongsTo(User, {
-//     foreignKey: 'user_id',
-//     // as: 'user',
-//     onDelete: 'CASCADE',
-//     onUpdate: 'CASCADE',
-//   });
-
-//   UsersToSkills.belongsTo(SoftSkill, {
-//     foreignKey: 'soft_skill_id',
-//     // as: 'softSkill',
-//     onDelete: 'CASCADE',
-//     onUpdate: 'CASCADE',
-//   });
-
 module.exports = UsersToSkills;

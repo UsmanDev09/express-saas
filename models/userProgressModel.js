@@ -1,6 +1,5 @@
 const { Model, DataTypes,Sequelize } = require('sequelize');
-const sequelize = new Sequelize(`postgres://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_DATABASE}`);
-const User = require('./userModel'); 
+const sequelize = new Sequelize(`postgres://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_DATABASE}`); 
 class UserProgress extends Model {}
 
 UserProgress.init({
@@ -61,11 +60,5 @@ UserProgress.init({
   tableName: 'user_progress',
   timestamps: false,
 });
-
-// UserProgress.belongsTo(User, {
-//     foreignKey: 'user_id',
-//     onDelete: 'CASCADE',
-//     onUpdate: 'CASCADE',
-//   });
 
 module.exports = UserProgress;

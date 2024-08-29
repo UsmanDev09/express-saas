@@ -1,7 +1,6 @@
 const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
 const admin = require('firebase-admin');
 const { BadRequest } = require('http-errors');
-require('dotenv').config();
 const path = require('path');
 const Users = require('../models/userModel');
 

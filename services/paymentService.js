@@ -1,4 +1,3 @@
-require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_API_KEY);
 
 const checkoutSession = async (products, res) => {
@@ -9,7 +8,7 @@ const checkoutSession = async (products, res) => {
                 product_data: {
                     name: product.name,
                 },
-                unit_amount: product.price * 100, // Amount in cents
+                unit_amount: product.price * 100,
             },
             quantity: product.quantity,
         }));

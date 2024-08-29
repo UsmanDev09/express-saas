@@ -1,8 +1,6 @@
-require("dotenv").config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
-const { UsersRepository } = require('../repositories/userRepository');
 const User = require('../models/userModel');
 const MailerService = require('../services/mailerService');
 const HasherService = require('../services/hasherService');
@@ -61,8 +59,6 @@ const signUp = async ({ email, password }) => {
 
   // Send verification email
   await sendVerifyEmail(user.id);
-
-  // return createJwtTokenPair(user);
 }
 
 const sendVerifyEmail = async (userId) => {
@@ -70,7 +66,6 @@ const sendVerifyEmail = async (userId) => {
     const user = await User.findByPk(userId, {
       include: [{ model: UsersVerificationToken, as: 'tokens' }],
     });
-    // console.log("User Tokens:", user);
 
     if (!user) {
       throw new Error('User not found');
@@ -82,18 +77,12 @@ const sendVerifyEmail = async (userId) => {
 
     const token = user.tokens.find(t => t.isVerifyEmail);
     const canSubmit = !token || (new Date() - token.submittedAt) >= 60000;
-    // console.log("token");
-    // console.log("token",token);
-    // console.log("can submit",canSubmit);
     if (user.isPending && canSubmit) {
-      // console.log("inside verification token");
       const verificationToken = await UsersVerificationToken.create({
         user_id: user.id,
         type:VerificationTokenType.VerifyEmail,
         token: jwt.sign({}, process.env.JWT_SECRET, { expiresIn: '1h' }),
       });
-
-      // Send verification email
       await MailerService.sendVerificationEmail(user.email, verificationToken.token, user.name);
     }
     return { message: "Email sent" };

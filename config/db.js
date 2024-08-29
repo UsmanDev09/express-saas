@@ -12,14 +12,6 @@ const connectDB = async () => {
 
        if(client.connect()){
         console.log("Database connected successfully");
-        // client.query(`Select * from users`,(err,res)=>{
-        //     if(!err){
-        //         console.log(res.rows);
-        //     }else{
-        //         console.log("Error",err.message);
-        //     }
-        //     client.end;
-        // })
        }
        
     } catch (err) {

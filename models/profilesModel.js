@@ -1,8 +1,5 @@
-require("dotenv").config();
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const sequelize = new Sequelize(`postgres://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_DATABASE}`);
-const User = require('./userModel');
-const FileEntity = require('./file.entity.model');
 class Profile extends Model {}
 
 Profile.init({
@@ -131,17 +128,4 @@ Profile.init({
   tableName: 'user_profiles',
   timestamps: false,
 });
-// Profile.belongsTo(User, {
-//     foreignKey: 'user_id',
-//     onDelete: 'CASCADE',
-//     onUpdate: 'CASCADE',
-//   });
-  
-  // Profile.belongsTo(FileEntity, {
-  //   foreignKey: 'file_id',
-  //   onDelete: 'SET NULL',
-  //   onUpdate: 'CASCADE',
-  // });
-
-
 module.exports = Profile;

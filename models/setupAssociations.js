@@ -51,12 +51,10 @@ Notification.belongsTo(Profile, {
     as: 'fromUser',
   });
   Notification.belongsTo(NotificationType, {
-    foreignKey: 'notification_type_id',
-    // as: 'notificationType',
+    foreignKey: 'notification_type_id'
   });
   Notification.belongsTo(NotificationGroup, {
-    foreignKey: 'group_id',
-    // as: 'NotificationGroup',
+    foreignKey: 'group_id'
   });
   
   Profile.belongsTo(FileEntity, {

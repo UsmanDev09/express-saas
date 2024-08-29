@@ -3,8 +3,6 @@ class OnboardingResponse {
       this.firstStep = new OnboardingFirstStepResponse(user);
       this.secondStep = new OnboardingSecondStepResponse(user.profile);
       this.thirdStep = new OnboardingThirdStepResponse(user.profile);
-      // Uncomment if you have the fourth step implemented
-      // this.fourthStep = new OnboardingFourthStepResponse(user);
     }
   
     get complete() {
@@ -49,8 +47,6 @@ class OnboardingResponse {
       return !!this.learningPace;
     }
   }
-  
-  // Export the classes
   module.exports = {
     OnboardingResponse,
     OnboardingFirstStepResponse,

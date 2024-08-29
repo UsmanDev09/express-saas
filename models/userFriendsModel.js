@@ -1,6 +1,5 @@
 const { Model, DataTypes,Sequelize } = require('sequelize');
 const sequelize = new Sequelize(`postgres://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_DATABASE}`);
-const User = require('./userModel'); 
 
 class UsersToFriends extends Model {}
 
@@ -35,23 +34,5 @@ UsersToFriends.init({
   tableName: 'users_friends',
   timestamps: false,
 });
-
-// UsersToFriends.belongsTo(User, {
-//   foreignKey: 'user_id',
-//   onDelete: 'CASCADE',
-//   onUpdate: 'CASCADE',
-// });
-
-// UsersToFriends.belongsTo(User, {
-//   foreignKey: 'friend_id',
-//   onDelete: 'CASCADE',
-//   onUpdate: 'CASCADE',
-// });
-
-// UsersToFriends.belongsTo(User, {
-//   foreignKey: 'initiator_id',
-//   onDelete: 'CASCADE',
-//   onUpdate: 'CASCADE',
-// });
 
 module.exports = UsersToFriends;
