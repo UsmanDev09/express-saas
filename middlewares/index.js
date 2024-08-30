@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const isAuthenticated = (...statuses) => (req, res, next) => {
+const isAuthenticated = () => (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader) return res.status(401).json({ message: 'Unauthorized' });
@@ -8,15 +8,15 @@ const isAuthenticated = (...statuses) => (req, res, next) => {
     req.user = decodedToken;
     next();
   } catch (err) {
-    res.status(401).json({ message: 'Unauthorized' });
+    res.status(401).json({ message: 'Unauthorized',error:err.message });
   }
 };
 
-const validateRequest = (schema) => (req, res, next) => {
-  next();
-};
+// const validateRequest = (schema) => (req, res, next) => {
+//   next();
+// };
 
 module.exports = {
   isAuthenticated,
-  validateRequest,
+  // validateRequest,
 }

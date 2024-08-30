@@ -1,4 +1,3 @@
-const express = require('express');
 const paymentService = require('../services/paymentService');
 const checkoutSession = async(req,res)=>{
     try {

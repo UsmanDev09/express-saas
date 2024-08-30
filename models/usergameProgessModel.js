@@ -1,4 +1,4 @@
-const { Model, DataTypes, Sequelize } = require('sequelize');
+const { DataTypes, Sequelize } = require('sequelize');
 const sequelize = new Sequelize(`postgres://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_DATABASE}`);
 const User = require('./userModel');
 

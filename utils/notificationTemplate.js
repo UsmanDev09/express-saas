@@ -1,5 +1,5 @@
 const NotificationTemplates = {
-    Welcome: (data) =>
+    Welcome: () =>
       `Welcome! We're thrilled to have you here. Dive in, explore, and enjoy your journey with us.\n If you need anything, we're here to help! \n -The Shaper Team`,
   
     FriendRequest: (data) => `${data.name} wants to be your friend`,

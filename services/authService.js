@@ -3,10 +3,8 @@ const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
 const User = require('../models/userModel');
 const MailerService = require('../services/mailerService');
-const HasherService = require('../services/hasherService');
 const userService = require('./userServices');
 const profileService = require('./profileService');
-const NotificationService = require('./notificationService');
 const UsersVerificationToken = require('../models/userVerificationTokenModel');
 const energyConstants = require('../constants/energyConstants');
 const Profile = require('../models/profilesModel');
@@ -22,7 +20,7 @@ const signIn = async (user) => {
     return createJwtTokenPair(foundUser);
 
   } catch (error) {
-    throw new Error("Error in sign in");
+    throw new Error("Error in sign in: ",error);
   }
 };
 
@@ -154,7 +152,7 @@ const resetPassword = async (token, password) => {
     await user.update({ password: hashedPassword });
     return { message: "User password changed successfully" };
   } catch (error) {
-    throw new Error('Invalid or expired token');
+    throw new Error('Invalid or expired token',error.message);
   }
 };
 
@@ -169,7 +167,7 @@ const refreshAccessToken = async (refreshToken) => {
 
     return createJwtTokenPair(user);
   } catch (error) {
-    throw new Error('Invalid refresh token');
+    throw new Error('Invalid refresh token',error.message);
   }
 };
 
@@ -192,7 +190,7 @@ const getProfile = async (user) => {
   }
 };
 
-const getFirebaseCustomToken = async (userId) => {
+const getFirebaseCustomToken = async () => {
   // Logic to get Firebase custom token
 };
 module.exports={

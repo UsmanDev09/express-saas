@@ -5,14 +5,6 @@ const EmailTemplate = {
   ForgotPassword: 'ForgotPassword',
   VerifyEmail: 'VerifyEmail',
 };
-const config = {
-  smtpHost: process.env.SMTP_HOST,
-  smtpPort: process.env.SMTP_PORT,
-  smtpUser: process.env.SMTP_USER,
-  smtpPass: process.env.SMTP_PASS,
-  frontendHostUrl: process.env.FRONTEND_HOST_URL,
-};
-
 // Initialize Nodemailer transporter
 const transporter = nodemailer.createTransport({
   host: process.env.MAILHOG_HOST,
