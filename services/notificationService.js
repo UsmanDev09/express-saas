@@ -255,7 +255,7 @@ const notificationSystem=async(notificationRequest)=>{
     await notification({
       notification_type_id:notificationRequest.notification_type_id,
       user_id: notificationRequest.user_id,
-      notification_message: notification.notification_message,
+      notification_message: notificationRequest.notification_message,
     })
     return {message:"System notification generated"};
   } catch (error) {

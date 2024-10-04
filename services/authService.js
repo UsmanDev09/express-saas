@@ -108,7 +108,7 @@ const verifyEmail = async (userId, code) => {
 
     // Verify email
     await user.update({
-      status: UserStatus.Verified,
+      status: UserStatus.Active,
       email_verified: new Date(),
     }
     );

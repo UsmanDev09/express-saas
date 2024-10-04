@@ -7,22 +7,16 @@ const auth = require('../middlewares/index');
 
 // Auth Routes
 // router.post('/sign-in'/*, authController.signIn*/,passport.authenticate('local',{successRedirect:'/'}));
-router.post('/sign-in', (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
-      if (err) {
-        return res.status(500).json({ message: 'An error occurred during authentication', error: err.message });
-      }
-      if (!user) {
-        return res.status(401).json({ message: info.message || 'Authentication failed' });
-      }
-      req.logIn(user, (err) => {
-        if (err) {
-          return res.status(500).json({ message: 'An error occurred during login', error: err.message });
-        }
-        return res.status(200).json({ message: 'Authentication successful', user: { id: user.id, email: user.email } });
-      });
-    })(req, res, next);
+router.post('/sign-in', auth.authenticateUser, (req, res) => {
+  res.status(200).json({
+    message: 'Authentication and authorization successful',
+    id: req.user.id,
+    email: req.user.email,
+    username: req.user.username,
+    name: req.user.name,
+    status: req.user.status,
   });
+});
 router.post('/sign-up',authController.signUp);
 router.post('/sign-out',auth.isAuthenticated(['active','pending','verified']),authController.signOut); 
 router.post('/confirm/email', auth.isAuthenticated(['pending']), authController.confirmEmail);

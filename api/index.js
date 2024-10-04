@@ -34,7 +34,8 @@ app.use(session({
     tableName: "session",
   }),
   cookie: { 
-    maxAge:1000*60*60*24
+    maxAge:1000*60*60*24,
+    secure:false
    }
 }))
 app.use(passport.initialize())
