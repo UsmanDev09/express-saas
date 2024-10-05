@@ -11,16 +11,11 @@ const UsersToFriends = require('./userFriendsModel');
 const UserProgress = require('./userProgressModel');
 const UsersVerificationToken = require('./userVerificationTokenModel');
 const UserGameProgress = require('./usergameProgessModel');
-const UserSocials = require('./userSocialModel');
 function setupAssociations() {
   User.hasMany(UsersToSkills, { foreignKey: 'user_id', as: 'usersToSkills', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
   User.hasOne(Profile, { foreignKey: 'user_id', as: 'profile', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
   User.hasMany(UsersVerificationToken, { foreignKey: 'user_id', as: 'tokens', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
   User.hasOne(UserGameProgress, { foreignKey: 'user_id', as: 'gameProgress', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
-  User.hasMany(UserSocials, { foreignKey: 'user_id', as: 'socials', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
-  User.hasOne(UserProgress, { foreignKey: 'user_id', as: 'progress', onDelete: 'CASCADE', onUpdate: 'CASCADE' }); 
-
-  UserSocials.belongsTo(User, { foreignKey: 'user_id', as: 'user', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
   UserGameProgress.belongsTo(User, { foreignKey: 'user_id', as: 'user', onDelete: 'CASCADE' });
 

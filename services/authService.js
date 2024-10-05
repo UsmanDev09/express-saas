@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
 const User = require('../models/userModel');
@@ -13,7 +13,7 @@ const VerificationTokenType = require("../enums/verification-token-type.enum");
 const UserStatus = require("../enums/user-status");
 const signIn = async (user) => {
   try {
-    const foundUser = await userService.findUserByEmailAndPassword(user.email,user.password);
+    const foundUser = await userService.findByEmail(user.email);
     if (!foundUser) {
       throw new Error("User not found");
     }
@@ -108,7 +108,7 @@ const verifyEmail = async (userId, code) => {
 
     // Verify email
     await user.update({
-      status: UserStatus.Active,
+      status: UserStatus.Verified,
       email_verified: new Date(),
     }
     );

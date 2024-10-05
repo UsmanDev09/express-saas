@@ -9,14 +9,7 @@ exports.signIn = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-exports.signOut = async(req,res)=>{
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.status(200).send("Logout successful");
-  });
-}
+
 exports.signUp = async (req, res) => {
   try {
     const tokenPair = await authService.signUp(req.body);
